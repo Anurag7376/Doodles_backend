@@ -1,0 +1,77 @@
+# ==============================
+# Python
+# ==============================
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+
+# ==============================
+# Django
+# ==============================
+
+*.log
+db.sqlite3
+media/
+staticfiles/
+
+# Migrations (DO NOT ignore migrations folder)
+# Only ignore migration cache files if needed
+*.pyc
+
+# ==============================
+# Environment Variables
+# ==============================
+
+.env
+.env.*
+*.env
+
+# ==============================
+# VS Code / IDE
+# ==============================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==============================
+# OS Files
+# ==============================
+
+.DS_Store
+Thumbs.db
+
+# ==============================
+# Docker
+# ==============================
+
+docker-compose.yml
+*.tar
+
+# ==============================
+# Testing / Coverage
+# ==============================
+
+.coverage
+htmlcov/
+.pytest_cache/
+
+# ==============================
+# Render
+# ==============================
+
+.render/
