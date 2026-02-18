@@ -32,7 +32,6 @@ INSTALLED_APPS = [
 
     "rest_framework",
     "corsheaders",
-
     "apps.users",
     "apps.subscriptions",
     "apps.chat",
@@ -67,7 +66,40 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = DEBUG
+# =========================
+# CORS (Prototype Mode)
+# =========================
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://doodles-backend-dghi.onrender.com",
+]
+
 
 if os.getenv("DATABASE_URL"):
     DATABASES = {
@@ -92,9 +124,10 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.IsAuthenticated",
+        "rest_framework.permissions.AllowAny",
     )
 }
+
 
 
 STATIC_URL = "/static/"
