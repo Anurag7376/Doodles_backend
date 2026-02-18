@@ -14,7 +14,11 @@ ASGI_APPLICATION = "config.asgi.application"
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+raw_allowed_hosts = os.getenv("ALLOWED_HOSTS", "")
+if raw_allowed_hosts:
+    ALLOWED_HOSTS = [host.strip() for host in raw_allowed_hosts.split(",") if host.strip()]
+else:
+    ALLOWED_HOSTS = ["*"] if DEBUG else []
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
@@ -63,7 +67,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True  # restrict in prod
+CORS_ALLOW_ALL_ORIGINS = DEBUG
 
 if os.getenv("DATABASE_URL"):
     DATABASES = {

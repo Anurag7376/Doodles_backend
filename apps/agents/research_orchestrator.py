@@ -1,10 +1,8 @@
-from apps.agents.intent_extractor import extract_intent
-from apps.agents.evidence_engine import gather_evidence
-from apps.agents.interactive_scientist import generate_scientific_response
+from .intent_extractor import extract_intent
+from .evidence_engine import gather_evidence
+from .interactive_scientist import generate_scientific_response
 from apps.chat.models import ResearchMemory
 from apps.chat.state_machine import get_next_stage
-from apps.agents.pubmed_agent import search_pubmed
-from apps.agents.citation_formatter import format_citations
 
 
 def run_autonomous_research(session, user_input):

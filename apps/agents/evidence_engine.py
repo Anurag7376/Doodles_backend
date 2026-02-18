@@ -1,5 +1,6 @@
 from .pubmed_agent import search_pubmed
-from .tools.clinical_trials import search_clinical_trials
+from .clinical_trials_agent import search_clinical_trials
+
 
 def gather_evidence(disease, compound):
     query = f"{compound} AND {disease}"
@@ -8,5 +9,5 @@ def gather_evidence(disease, compound):
 
     return {
         "pubmed": pubmed,
-        "clinical_trials": trials
+        "clinical_trials": trials,
     }
