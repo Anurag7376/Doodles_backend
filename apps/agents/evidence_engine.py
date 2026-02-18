@@ -1,4 +1,4 @@
-from .pubmed import search_pubmed
+from .pubmed_agent import search_pubmed
 from .tools.clinical_trials import search_clinical_trials
 
 def gather_evidence(disease, compound):
