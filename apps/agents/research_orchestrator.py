@@ -16,8 +16,10 @@ def run_autonomous_research(session, user_input):
     # 2️ Gather evidence
     evidence = gather_evidence(disease, compound)
 
-    # 3️ Retrieve memory
-    past_memory = ResearchMemory.objects.filter(session=session)
+    if session is not None:
+        past_memory = ResearchMemory.objects.filter(session=session)
+    else:
+        past_memory = ResearchMemory.objects.none()
 
     # 4️ Generate reasoning
     response = generate_scientific_response(
@@ -27,9 +29,9 @@ def run_autonomous_research(session, user_input):
         memory=past_memory
     )
 
-    # 5️ Update research stage
-    session.research_stage = get_next_stage(session.research_stage)
-    session.current_hypothesis = response["hypothesis"]
-    session.save()
+    if session is not None:
+        session.research_stage = get_next_stage(session.research_stage)
+        session.current_hypothesis = response["hypothesis"]
+        session.save()
 
     return response

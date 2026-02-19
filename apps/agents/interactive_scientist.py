@@ -26,17 +26,19 @@ def _get_text(response):
 
 
 def generate_scientific_response(session, user_input, evidence, memory):
+    stage = getattr(session, "research_stage", "exploration")
+    previous_hypothesis = getattr(session, "current_hypothesis", "")
 
     prompt = f"""
 You are Doodle, an autonomous pharmaceutical research AI.
 
-Current Stage: {session.research_stage}
+Current Stage: {stage}
 
 User Input:
 {user_input}
 
 Previous Hypothesis:
-{session.current_hypothesis}
+{previous_hypothesis}
 
 Evidence:
 {evidence}
